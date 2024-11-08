@@ -1,4 +1,3 @@
-
 import Search from "../../Componenets/Search/Search";
 import {useState} from "react";
 import { UserProps } from '../../Types/users';
