@@ -1,6 +1,7 @@
 import { useLocation} from "react-router-dom";
 import { MdLocationPin } from "react-icons/md";
 import { UserProps } from "../../Types/users";
+import Footer from "../../Componenets/Footer/Footer"
 
 const ProfileEdit = () => {
   const location = useLocation();
@@ -52,6 +53,7 @@ const ProfileEdit = () => {
           <p>Usuário não encontrado!</p>
         )}
       </div>
+      <Footer />
     </div>
   );
 };
