@@ -4,6 +4,7 @@ import { MdLocationPin } from "react-icons/md";
 import React, { useState } from "react";
 import { UserProps } from "../../Types/users"
 import Footer from "../../Componenets/Footer/Footer"
+import Header from "../../Componenets/Header/Header";
 
 
 const Profile = () => {
@@ -13,7 +14,7 @@ const Profile = () => {
    
    return (
     <div>
-      
+      <Header />
       <div className="profile-container">
         {user ? (
           <div className="profile-content">

@@ -2,6 +2,7 @@ import { useLocation} from "react-router-dom";
 import { MdLocationPin } from "react-icons/md";
 import { UserProps } from "../../Types/users";
 import Footer from "../../Componenets/Footer/Footer"
+import Header from "../../Componenets/Header/Header";
 
 const ProfileEdit = () => {
   const location = useLocation();
@@ -15,6 +16,7 @@ const ProfileEdit = () => {
 
   return (
     <div>
+      <Header />
       <div className="profile-container">
         {user ? (
           <div className="profile-content">
