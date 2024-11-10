@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Email.css";
 
 interface EmailProps {
   isEditing: boolean;
@@ -17,46 +18,43 @@ const Email: React.FC<EmailProps> = ({ isEditing, email, onEmailChange }) => {
     }
   }, [localEmail]);
 
-
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newEmail = e.target.value;
     setLocalEmail(newEmail);
 
-    
     if (onEmailChange) {
       onEmailChange(newEmail);
     }
   };
 
+  if (!localEmail && !isEditing) {
+    return null;
+  }
+
   return (
-    <div className="email-section">
-      {isEditing ? (
-        <div>
-          <label>
-            Adicione um e-mail adicional:
+    <div className={`email-section ${isEditing ? 'editing' : ''}`}>
+      <div className="email-display">
+        <p className="email-text">Sinta-se livre para me contratar a qualquer momento!</p>
+
+        {isEditing ? (
+          <>
             <input
               type="email"
               value={localEmail}
               onChange={handleEmailChange}
-              placeholder="Seu e-mail adicional"
+              placeholder="Adicione um e-mail adicional"
+              className="email-input"
             />
-          </label>
-          <p>Sinta-se livre para me contratar a qualquer momento!</p>
-        </div>
-      ) : (
-      
-        localEmail && (
-          <div className="email-display">
-            <p>Sinta-se livre para me contratar a qualquer momento!</p>
-            <p>{localEmail}</p>
-          </div>
-        )
-      )}
+          </>
+        ) : (
+          localEmail && <p className="email-address">{localEmail}</p>
+        )}
+        <div className="line"></div>
+      </div>
     </div>
   );
 };
 
 export default Email;
-
 
 
