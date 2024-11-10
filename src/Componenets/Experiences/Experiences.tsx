@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MdAdd } from "react-icons/md";
-import "./Experiencer.css"
+import "./Experiences.css";
 
 type Experience = {
   title: string;
@@ -14,40 +14,48 @@ type ExperiencesProps = {
   isEditing: boolean;
   experiences: Experience[];
   onAddExperience: (experience: Experience) => void;
+  onDeleteExperience: (index: number) => void;
 };
 
-const Experiences: React.FC<ExperiencesProps> = ({ isEditing, experiences, onAddExperience }) => {
+const Experiences: React.FC<ExperiencesProps> = ({ isEditing, experiences, onAddExperience, onDeleteExperience }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newExperience, setNewExperience] = useState<Experience>({
     title: "",
     period: "",
     skills: "",
     description: "",
-    repoLink: ""
+    repoLink: "",
   });
 
-  const handleExperienceChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, field: keyof Experience) => {
+  
+  const handleExperienceChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    field: keyof Experience
+  ) => {
     setNewExperience({ ...newExperience, [field]: e.target.value });
   };
 
+ 
   const handleAddExperience = () => {
-    onAddExperience(newExperience);
+    onAddExperience(newExperience);  
+    setIsModalOpen(false);  
     setNewExperience({
       title: "",
       period: "",
       skills: "",
       description: "",
-      repoLink: ""
-    });
-    setIsModalOpen(false);
+      repoLink: "",
+    });  
   };
 
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  };
-
+  dos
   const handleSaveExperience = () => {
     return newExperience.title && newExperience.period && newExperience.skills && newExperience.description;
+  };
+
+  
+  const handleModalClose = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -61,6 +69,9 @@ const Experiences: React.FC<ExperiencesProps> = ({ isEditing, experiences, onAdd
             <p>{exp.skills}</p>
             <p>{exp.description}</p>
             {exp.repoLink && <a href={exp.repoLink} target="_blank" rel="noopener noreferrer">Repositório</a>}
+            {isEditing && (
+              <button onClick={() => onDeleteExperience(index)}>Excluir</button>
+            )}
           </div>
         ))
       ) : (
@@ -73,7 +84,6 @@ const Experiences: React.FC<ExperiencesProps> = ({ isEditing, experiences, onAdd
         </div>
       )}
 
-      
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
@@ -128,3 +138,6 @@ const Experiences: React.FC<ExperiencesProps> = ({ isEditing, experiences, onAdd
 };
 
 export default Experiences;
+
+
+
