@@ -3,6 +3,7 @@ import "./Header.css";
 import { MdExitToApp } from 'react-icons/md';
 import { auth, githubProvider } from "../../firebase-config";
 import { signInWithPopup } from 'firebase/auth';
+import VectorIcon from "../../Assets/solar_login-2-broken.svg"
 
 interface HeaderProps {
     isProfileEdit?: boolean; 
@@ -30,21 +31,26 @@ interface HeaderProps {
       }
     };
   return (
-    <header className="header" >
-      <nav>
-        <ul>
+    <header className="header">
+    <nav>
+      <ul>
         <li><Link to="/">Início</Link></li>
-          <li><Link to="/minha-historia">Minha História</Link></li>
-          <li><Link to="/experiencias">Experiências</Link></li>
-          <li><Link to="/contato">Contato</Link></li>
-          {isProfileEdit ? (
-            <li><button onClick={handleLogout}><MdExitToApp /> Sair</button></li>
-          ) : (
-            <li><button onClick={handleGitHubLogin}>Entrar</button></li>
-          )}
-        </ul>
-      </nav>
-    </header>
+        <li><Link to="/minha-historia">Minha História</Link></li>
+        <li><Link to="/experiencias">Experiências</Link></li>
+        <li><Link to="/contato">Contato</Link></li>
+      </ul>
+    </nav>
+  
+    {isProfileEdit ? (
+      <button onClick={handleLogout} className="logout">
+        <MdExitToApp /> Sair
+      </button>
+    ) : (
+      <button onClick={handleGitHubLogin} className="login">
+        <img src={VectorIcon} alt="Vector Icon" className="vector-icon" /> Entrar
+      </button>
+    )}
+  </header>
   );
   }
 
