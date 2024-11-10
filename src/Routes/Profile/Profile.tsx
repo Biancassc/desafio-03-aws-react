@@ -1,16 +1,18 @@
-
 import { useLocation } from "react-router-dom";
 import { MdLocationPin } from "react-icons/md";
 import React, { useState } from "react";
 import { UserProps } from "../../Types/users"
 import Footer from "../../Componenets/Footer/Footer"
 import Header from "../../Componenets/Header/Header";
+import History from "../../Componenets/History/History"
+
 
 
 const Profile = () => {
   const location = useLocation();
   const user: UserProps = location.state;
    const [userName,] = useState("Fulano"); 
+   const [history, setHistory] = useState("Não há nenhuma história para contar");
    
    return (
     <div>
@@ -50,11 +52,18 @@ const Profile = () => {
               <a href={`https://www.linkedin.com/in/${user.login}`} target="_blank" rel="noopener noreferrer">
                 <button>LinkedIn</button>
               </a>
+              <History
+              isEditing={false} 
+              history={history}
+              onHistoryChange={(e) => setHistory(e.target.value)} 
+            />
+            
             </div>     
           </div>
         ) : (
           <p>Usuário não encontrado!</p>
         )}
+        
       </div>
       <Footer />
     </div>
