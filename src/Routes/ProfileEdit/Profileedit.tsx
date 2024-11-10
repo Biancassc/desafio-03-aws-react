@@ -27,9 +27,24 @@ const ProfileEdit = () => {
     return savedExperiences ? JSON.parse(savedExperiences) : [];
   });
 
+
+  const [socialLinks, setSocialLinks] = useState({
+    instagram: `https://www.instagram.com/${user?.login}`,
+    facebook: `https://www.facebook.com/${user?.login}`,
+    twitter: `https://twitter.com/${user?.login}`,
+    youtube: `https://www.youtube.com/${user?.login}`,
+  });
+
   useEffect(() => {
     localStorage.setItem("experiences", JSON.stringify(experiences));
   }, [experiences]);
+
+  const handleSocialLinkEdit = (social: string, newLink: string) => {
+    setSocialLinks(prevLinks => ({
+      ...prevLinks,
+      [social]: newLink 
+    }));
+  };
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
@@ -120,7 +135,10 @@ const ProfileEdit = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer 
+        socialLinks={socialLinks}
+        isEditing={isEditing}
+        onSocialLinkEdit={handleSocialLinkEdit}/>
     </div>
   );
 };
