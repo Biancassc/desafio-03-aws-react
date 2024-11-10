@@ -1,6 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 header {
-    
     background-color: #0b2239;
     color: white;
     padding: 20px 40px;
@@ -8,36 +16,48 @@ header {
     border-bottom-right-radius: 35.6px;
     display: flex;
     align-items: center;
-    position: sticky;  
-    top: 0;               
-    width: 100%;       
-    box-sizing: border-box;
-    height: 108px; 
-   font-family: 'Roboto' !important;
-    
-  }
-  
-  
-  header nav {
-    gap: 64px; 
-    font-size: 32px !important; 
-   
-  }
-  
-  header nav ul {
-    list-style: none; 
-    display: flex; 
-  }
-  
-  
-  header nav a {
+    width: 100vw;
+    height: 100px;
+    position: sticky;
+    top: 0;
+}
+
+header nav {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center; 
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 64px;
+}
+
+header nav a {
     font-size: 32px;
     color: #FFFFFF;
     text-decoration: none;
     font-weight: bold;
-    padding: 5px 10px; 
-    transition: background-color 0.3s ease;
-  }
-  
-  
- 
+}
+
+button.login, button.logout {
+    font-size: 32px;
+    font-weight: bold;
+    border: none;
+    background-color: #0b2239;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button.login .vector-icon {
+    width: 32px;
+    height: 32px;
+}
+
+button.logout .vector-icon {
+    display: none;
+}
