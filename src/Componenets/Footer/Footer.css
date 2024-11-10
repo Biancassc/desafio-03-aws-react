@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer {
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    
+}
+
+.footer p.happy-work {
+    font-size: 40px;
+    color: #18191f;
+    margin-bottom: 16px;
+    display: flex;
+    margin-left:  64px; 
+    margin-right:  64px; 
+    font-weight:600
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+.social-icons img {
+    width: 96px;
+    height: 96px;
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    margin-right:84px; 
+}
+
+.location img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    
+}
+
+.location p, .copyright p {
+    font-size: 25px;
+    color: #18191f;
+}
+.Copy-location{
+display: flex;
+}
