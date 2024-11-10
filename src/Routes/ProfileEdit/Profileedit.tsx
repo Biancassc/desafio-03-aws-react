@@ -7,32 +7,36 @@ import History from "../../Componenets/History/History";
 import Experiences from "../../Componenets/Experiences/Experiences";
 import { MdEdit, MdCheck } from "react-icons/md";
 import { useLocation } from "react-router-dom";
+import Email from "../../Componenets/Email/email";
 
 const ProfileEdit = () => {
   const location = useLocation();
   const user = location.state as UserProps | null;
 
   const [isEditing, setIsEditing] = useState(false);
-  const [history, setHistory] = useState<string>(localStorage.getItem("history") || "");
+  const [history, setHistory] = useState<string>(
+    localStorage.getItem("history") || ""
+  );
+  const [email, setEmail] = useState<string>(
+    localStorage.getItem("userEmail") || ""
+  );
 
-  
   const [experiences, setExperiences] = useState<any[]>(() => {
     const savedExperiences = localStorage.getItem("experiences");
     return savedExperiences ? JSON.parse(savedExperiences) : [];
   });
 
-  
   useEffect(() => {
     localStorage.setItem("experiences", JSON.stringify(experiences));
   }, [experiences]);
 
   const handleEditClick = () => {
-    setIsEditing(!isEditing); 
+    setIsEditing(!isEditing);
   };
 
   const handleHistoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHistory(e.target.value); 
-    localStorage.setItem("history", e.target.value); 
+    setHistory(e.target.value);
+    localStorage.setItem("history", e.target.value);
   };
 
   const handleAddExperience = (experience: any) => {
@@ -58,7 +62,11 @@ const ProfileEdit = () => {
         <div className="profile-content">
           <div className="profile-header">
             <div className="profile-photo">
-              <img src={user.avatar_url} alt={user.login} className="profile-avatar" />
+              <img
+                src={user.avatar_url}
+                alt={user.login}
+                className="profile-avatar"
+              />
             </div>
 
             <div className="user-info">
@@ -80,10 +88,16 @@ const ProfileEdit = () => {
           </div>
 
           <div className="social-links">
-            <a href={`https://github.com/${user.login}`} target="_blank" rel="noopener noreferrer">
+            <a
+              href={`https://github.com/${user.login}`}
+              target="_blank"
+              rel="noopener noreferrer" >
               <button>GitHub</button>
             </a>
-            <a href={`https://www.linkedin.com/in/${user.login}`} target="_blank" rel="noopener noreferrer">
+            <a
+              href={`https://www.linkedin.com/in/${user.login}`}
+              target="_blank"
+              rel="noopener noreferrer">
               <button>LinkedIn</button>
             </a>
             <History
@@ -97,7 +111,12 @@ const ProfileEdit = () => {
               onAddExperience={handleAddExperience}
               onDeleteExperience={handleDeleteExperience}
             />
-          </div>     
+             <Email
+            isEditing={isEditing}
+            email={email}
+            onEmailChange={setEmail} 
+          />
+          </div>
         </div>
       </div>
       <Footer />
@@ -106,12 +125,3 @@ const ProfileEdit = () => {
 };
 
 export default ProfileEdit;
-
-
-
-
-
-
-
-
-
