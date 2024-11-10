@@ -48,7 +48,6 @@ const Experiences: React.FC<ExperiencesProps> = ({ isEditing, experiences, onAdd
     });  
   };
 
-  dos
   const handleSaveExperience = () => {
     return newExperience.title && newExperience.period && newExperience.skills && newExperience.description;
   };
