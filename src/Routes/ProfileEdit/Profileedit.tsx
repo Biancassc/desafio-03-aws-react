@@ -16,7 +16,7 @@ const ProfileEdit = () => {
 
   return (
     <div>
-      <Header />
+     <Header isProfileEdit={true} />
       <div className="profile-container">
         {user ? (
           <div className="profile-content">
