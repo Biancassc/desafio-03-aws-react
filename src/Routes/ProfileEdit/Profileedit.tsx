@@ -8,6 +8,7 @@ import Experiences from "../../Componenets/Experiences/Experiences";
 import { MdEdit, MdCheck } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import Email from "../../Componenets/Email/email";
+import "./ProfileEdit.css"
 
 const ProfileEdit = () => {
   const location = useLocation();
@@ -64,13 +65,12 @@ const ProfileEdit = () => {
             <div className="profile-photo">
               <img
                 src={user.avatar_url}
-                alt={user.login}
+                alt="foto de perfil"
                 className="profile-avatar"
               />
             </div>
 
             <div className="user-info">
-              <h1 className="greeting">Hello, I'm </h1>
               <h2>{user.login}</h2>
               {user.location && (
                 <p>
@@ -80,6 +80,7 @@ const ProfileEdit = () => {
               )}
               <h3>{user.email}</h3>
             </div>
+            <h1 className="greeting">Hello, I'm </h1>
           </div>
           <div className="edit-button-container">
             <button onClick={handleEditClick} className="edit-button">
