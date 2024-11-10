@@ -6,6 +6,7 @@ import TwitterIcon from "../../Assets/Frame 126.svg";
 import BrazilIcon from "../../Assets/Vector (2).svg";
 import { FaRegEdit } from "react-icons/fa";  
 import "../../Componenets/Footer/Footer.css";
+import PencilIcon from "../../Assets/Group 13.svg"
 
 const Footer = ({ socialLinks, isEditing, onSocialLinkEdit }: any) => {
  
@@ -43,7 +44,7 @@ const Footer = ({ socialLinks, isEditing, onSocialLinkEdit }: any) => {
             <img src={InstagramIcon} alt="Instagram" width="40" height="40" />
           </a>
           {isEditing && (
-            <FaRegEdit
+            <img src={PencilIcon} alt="Edit Pencil"
               className="edit-icon"
               onClick={() => handleSocialEditClick("instagram")}
             />
@@ -56,7 +57,7 @@ const Footer = ({ socialLinks, isEditing, onSocialLinkEdit }: any) => {
             <img src={FacebookIcon} alt="Facebook" width="40" height="40" />
           </a>
           {isEditing && (
-            <FaRegEdit
+            <img src={PencilIcon} alt="Edit Pencil"
               className="edit-icon"
               onClick={() => handleSocialEditClick("facebook")}
             />
@@ -69,7 +70,7 @@ const Footer = ({ socialLinks, isEditing, onSocialLinkEdit }: any) => {
             <img src={TwitterIcon} alt="Twitter" width="40" height="40" />
           </a>
           {isEditing && (
-            <FaRegEdit
+            <img src={PencilIcon} alt="Edit Pencil"
               className="edit-icon"
               onClick={() => handleSocialEditClick("twitter")}
             />
@@ -82,7 +83,7 @@ const Footer = ({ socialLinks, isEditing, onSocialLinkEdit }: any) => {
             <img src={YouTubeIcon} alt="YouTube" width="40" height="40" />
           </a>
           {isEditing && (
-            <FaRegEdit
+            <img src={PencilIcon} alt="Edit Pencil"
               className="edit-icon"
               onClick={() => handleSocialEditClick("youtube")}
             />
