@@ -1,10 +1,11 @@
 import { useLocation } from "react-router-dom";
 import { MdLocationPin } from "react-icons/md";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { UserProps } from "../../Types/users"
 import Footer from "../../Componenets/Footer/Footer"
 import Header from "../../Componenets/Header/Header";
 import History from "../../Componenets/History/History"
+import Experiences from "../../Componenets/Experiences/Experiences";
 
 
 
@@ -13,7 +14,23 @@ const Profile = () => {
   const user: UserProps = location.state;
    const [userName,] = useState("Fulano"); 
    const [history, setHistory] = useState("Não há nenhuma história para contar");
+   const [experiences, setExperiences] = useState<any[]>([]);
+
    
+   useEffect(() => {
+     const storedExperiences = localStorage.getItem("experiences");
+     if (storedExperiences) {
+       setExperiences(JSON.parse(storedExperiences));
+     }
+   }, []); 
+ 
+   
+   useEffect(() => {
+     if (experiences.length > 0) {
+       localStorage.setItem("experiences", JSON.stringify(experiences));
+     }
+   }, [experiences]); 
+
    return (
     <div>
       <Header isProfileEdit={false} />
@@ -57,7 +74,14 @@ const Profile = () => {
               history={history}
               onHistoryChange={(e) => setHistory(e.target.value)} 
             />
-            
+             <div className="experiences-section">
+              <h3>Experiências</h3>
+              {experiences.length === 0 ? (
+                <p>Não há nada por aqui!</p> 
+              ) : (
+                <Experiences experiences={experiences} />
+              )}
+            </div>
             </div>     
           </div>
         ) : (
