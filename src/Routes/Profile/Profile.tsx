@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-import { MdLocationPin } from "react-icons/md";
 import React, { useState, useEffect } from "react";
 import { UserProps } from "../../Types/users";
 import Footer from "../../Componenets/Footer/Footer";
@@ -7,6 +6,7 @@ import Header from "../../Componenets/Header/Header";
 import History from "../../Componenets/History/History";
 import Experiences from "../../Componenets/Experiences/Experiences";
 import Email from "../../Componenets/Email/email";
+import "./Profile.css";
 
 const Profile = () => {
   const location = useLocation();
@@ -51,7 +51,7 @@ const Profile = () => {
                 <h2>{user.login}</h2>
                 {user.location && (
                   <p>
-                    <MdLocationPin />
+                    
                     <span>{user.location}</span>
                   </p>
                 )}
