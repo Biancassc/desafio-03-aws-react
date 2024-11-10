@@ -1,0 +1,249 @@
+.experiences-container {
+  background-color: #004346; 
+  padding-top: 64px; 
+  padding-bottom: 64px; 
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.experiences-container h3 {
+  font-size: 64px; 
+  font-weight: 800; 
+  color: white;  
+  text-align: center; 
+  margin-bottom: 64px;   
+}
+
+.experiences-box {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 32px;  
+  justify-content: center;  
+}
+
+
+.experience-card {
+  width: 409px;  
+  height: 503px;  
+  background-color: #508991;  
+  padding: 32px; 
+  border-radius: 20px;  
+  box-shadow: 6px 8px 0px 0px #09BC8A;
+  margin: 16px;  
+  display: flex; 
+  flex-direction: column;  
+  align-items: left;  
+  box-sizing: border-box;
+  text-align: left;  
+  
+}
+
+
+.add-experience {
+  width: 409px;  
+  height: 503px;  
+  background-color: #508991; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 6px 8px 0px 0px #09BC8A;
+  cursor: pointer;
+  color: white;
+  font-size: 32px;
+  margin: 16px;  
+  position: relative; 
+}
+
+.add-experience svg {
+  font-size: 90px;
+  color: white;  
+}
+
+.add-experience span {
+  font-size: 24px;  
+  font-weight: bold;
+  color: white;
+  
+}
+
+.experience-card h4 {
+  font-size: 32px; 
+  color: white;  
+  margin-bottom: 16px;  
+  flex-wrap: wrap; 
+}
+
+
+.experience-card p.year {
+  font-size: 20px;  
+  color: #d1d5db;  
+  margin-bottom: 16px; 
+  flex-wrap: wrap; 
+  
+}
+
+
+.experience-card .skills {
+  display: flex;  
+  flex-wrap: wrap; 
+  margin-bottom: 16px;  
+}
+
+.experience-card .skills span {
+  background-color: #172a3a; 
+  color: white;  
+  font-size: 12px;  
+  padding: 5px 10px;  
+  margin: 10px;  
+  border-radius: 4px;  
+}
+
+
+.experience-card .description {
+  font-size: 24px;  
+  color: white;  
+  line-height: 1.6;  
+  margin-bottom: 29px;  
+  word-wrap: break-word;  
+  white-space: pre-wrap;  
+}
+
+.experience-card .repo-link {
+  display: inline-block;  
+  width: 353px;  
+  height: 58px;  
+  background-color: #172a3a; 
+  color: white;  
+  font-size: 24px;  
+  text-align: center;  
+  line-height: 58px;  
+  border-radius: 6px; 
+  text-decoration: none;  
+  margin-top: auto; 
+  cursor: pointer; 
+  box-sizing: border-box; 
+}
+
+
+.experience-card .card-actions {
+  display: flex;
+  justify-content: space-between; 
+  margin-top: 15px; 
+  opacity: 0; 
+  visibility: hidden;  
+  
+  
+}
+
+.experience-card:hover .card-actions {
+  opacity: 1; 
+  visibility: visible;  
+}
+
+
+.experience-card .card-actions button {
+  background-color: transparent;  
+  border: none;
+  border-radius: 5px;  
+  padding: 10px 20px;   
+  cursor: pointer;  
+}
+
+.experience-card .card-actions .edit:hover,
+.experience-card .card-actions .delete:hover {
+  background-color: #172a3a; 
+  
+}
+
+.modal {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  max-width: 867px;
+  height: auto;
+  max-height: 70%;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 26px;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+
+
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+   gap: 31px;  
+ 
+}
+
+.modal-content h3 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #172A3A;
+  margin-bottom: 64px;
+  text-align: left;
+
+}
+
+
+.modal-content input,
+.modal-content textarea {
+  width: 739px;
+  height: 72px; 
+  padding: 10px;
+  font-size: 20px;
+  border: 2px solid #172a3a;
+  border-radius: 6px;
+  margin-bottom: 31px;
+  box-sizing: border-box;
+}
+
+
+.modal-content textarea {
+  height: 281px;  
+}
+
+
+.modal-actions {
+  display: flex;
+  gap: 24px; 
+  width: 100%;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  width: 357px;
+  height: 64px;
+  font-size: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-actions button.cancel {
+  border: 2px solid #172a3a;
+  color: #172a3a;
+}
+
+.modal-actions button.save {
+  background-color: #172a3a;
+  color: white;
+}
+
+.modal-actions button.cancel:disabled,
+.modal-actions button.save:disabled {
+  background-color: #d1d5db;
+  border: 2px solid #d1d5db;
+  color: #6c757d;
+ 
+}
+.Noting{
+  font-size: 40px;
+  color: #D1D5DB;
+}
