@@ -1,22 +1,54 @@
-.error-popup {
-    background-color: rgba(255, 0, 0, 0.8); /* Fundo vermelho com transparência */
+.email-section {
+    background-color: #172A3A;
     color: white;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 392px;
+    width: 100%;
     text-align: center;
-    font-size: 14px;
+    padding: 0 20px;
+    box-sizing: border-box;
   }
   
-  .email-section {
-    position: relative;
+  .email-text, .email-address {
+    color: white;
+    font-size: 64px;
+    margin: 0;
+    word-wrap: break-word;
   }
   
-  .email-display {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 10px;
-    background-color: #f9f9f9;
+  .email-input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 64px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    text-align: center;
+    margin-top: 64px;
+  }
+  
+  .email-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 64px;
+    text-align: center;
+  }
+  
+  .line {
+    height: 3px;
+    background-color: white;
+    margin-top: 29px;
+    width: 100%;
+    max-width: 839px;
+    margin: 0 auto; 
+    display: block;
+  }
+  
+  .email-address {
+    margin-top: 64px;
+    font-size: 64px;
   }
   
