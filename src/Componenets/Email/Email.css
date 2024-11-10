@@ -1,0 +1,22 @@
+.error-popup {
+    background-color: rgba(255, 0, 0, 0.8); /* Fundo vermelho com transparência */
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .email-section {
+    position: relative;
+  }
+  
+  .email-display {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+  }
+  
