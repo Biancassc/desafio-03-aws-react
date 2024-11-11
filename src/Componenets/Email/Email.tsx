@@ -32,20 +32,18 @@ const Email: React.FC<EmailProps> = ({ isEditing, email, onEmailChange }) => {
   }
 
   return (
-    <div className={`email-section ${isEditing ? 'editing' : ''}`}>
+    <div className={`email-section ${isEditing ? "editing" : ""}`}>
       <div className="email-display">
         <p className="email-text">Sinta-se livre para me contratar a qualquer momento!</p>
 
         {isEditing ? (
-          <>
-            <input
-              type="email"
-              value={localEmail}
-              onChange={handleEmailChange}
-              placeholder="Adicione um e-mail adicional"
-              className="email-input"
-            />
-          </>
+          <input
+            type="email"
+            value={localEmail}
+            onChange={handleEmailChange}
+            placeholder="Adicione um e-mail adicional"
+            className="email-input"
+          />
         ) : (
           localEmail && <p className="email-address">{localEmail}</p>
         )}
@@ -56,5 +54,4 @@ const Email: React.FC<EmailProps> = ({ isEditing, email, onEmailChange }) => {
 };
 
 export default Email;
-
 

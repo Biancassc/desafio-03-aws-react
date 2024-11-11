@@ -58,7 +58,11 @@ const ProfileEdit = () => {
   };
 
   const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFullName(e.target.value);  // Atualiza o nome completo
+    setFullName(e.target.value); 
+  };
+  const handleEmailChange = (newEmail: string) => {
+    setEmail(newEmail);
+    localStorage.setItem("userEmail", newEmail); 
   };
 
   if (!user) {
@@ -131,6 +135,7 @@ const ProfileEdit = () => {
           />
         </div>
       </div>
+      <Email isEditing={isEditing} email={email} onEmailChange={handleEmailChange} />
       <div id="footer">
         <Footer
           socialLinks={{
