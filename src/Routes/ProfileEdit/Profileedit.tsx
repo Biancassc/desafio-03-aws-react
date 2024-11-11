@@ -1,5 +1,4 @@
-
-import { MdLocationPin, MdEdit, MdCheck } from "react-icons/md";
+import { MdLocationPin } from "react-icons/md";
 import { UserProps } from "../../Types/users";
 import Footer from "../../Componenets/Footer/Footer";
 import Header from "../../Componenets/Header/Header";
@@ -20,6 +19,7 @@ const ProfileEdit = () => {
   const [userName, setUserName] = useState(user?.login || "");
   const [history, setHistory] = useState(localStorage.getItem("history") || "");
   const [email, setEmail] = useState(localStorage.getItem("userEmail") || "");
+  const [fullName, setFullName] =  useState(localStorage.getItem(`fullName-${user?.login}`) || user?.name || "Fulano");
 
   const [experiences, setExperiences] = useState<any[]>(() => {
     const savedExperiences = localStorage.getItem(`experiences-${user?.login}`);
@@ -31,6 +31,11 @@ const ProfileEdit = () => {
       localStorage.setItem(`experiences-${user.login}`, JSON.stringify(experiences));
     }
   }, [experiences, user]);
+  useEffect(() => {
+    if (fullName) {
+      localStorage.setItem(`fullName-${user?.login}`, fullName);
+    }
+  }, [fullName, user]);
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
@@ -52,8 +57,8 @@ const ProfileEdit = () => {
     setExperiences(updatedExperiences);
   };
 
-  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserName(e.target.value);
+  const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFullName(e.target.value);  // Atualiza o nome completo
   };
 
   if (!user) {
@@ -62,7 +67,7 @@ const ProfileEdit = () => {
 
   return (
     <div>
-      <Header isProfileEdit={true} userAvatar={user.avatar_url}  />
+      <Header isProfileEdit={true} userAvatar={user.avatar_url} />
       <div id="Header" className="edit-profile-container">
         <div className="edit-profile-left-info">
           <div className="edit-profile-photo">
@@ -73,18 +78,7 @@ const ProfileEdit = () => {
             />
           </div>
           <div className="edit-profile-user-info">
-            <h2>
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={userName}
-                  onChange={handleUserNameChange}
-                  className="edit-editable-name"
-                />
-              ) : (
-                userName
-              )}
-            </h2>
+            <h2>{userName}</h2>
             {user.location && (
               <p>
                 <MdLocationPin />
@@ -96,8 +90,19 @@ const ProfileEdit = () => {
         </div>
 
         <div className="edit-profile-right-info">
-          <h1 className="edit-greeting">Hello, I'm  </h1>
-          <h2 className="username">{user.name || user.login}</h2>
+          <h1 className="edit-greeting">Hello, I'm</h1>
+          <h2 className="username">
+            {isEditing ? (
+              <input
+                type="text"
+                value={fullName}  
+                onChange={handleFullNameChange}  
+                className="edit-editable-name"
+              />
+            ) : (
+              fullName 
+            )}
+          </h2>
           <div className="edit-profile-bio">
             <span>{user.bio}</span>
           </div>
@@ -116,31 +121,27 @@ const ProfileEdit = () => {
           isEditing={isEditing}
           history={history}
           onHistoryChange={handleHistoryChange}
-         
         />
         <div id="Experiences">
-        <Experiences
-          isEditing={isEditing}
-          experiences={experiences}
-          onAddExperience={handleAddExperience}
-          onDeleteExperience={handleDeleteExperience}
-         
-        />
+          <Experiences
+            isEditing={isEditing}
+            experiences={experiences}
+            onAddExperience={handleAddExperience}
+            onDeleteExperience={handleDeleteExperience}
+          />
         </div>
       </div>
       <div id="footer">
-      <Footer 
-        socialLinks={{
-          instagram: `https://www.instagram.com/${user.login}`,
-          facebook: `https://www.facebook.com/${user.login}`,
-          twitter: `https://twitter.com/${user.login}`,
-          youtube: `https://www.youtube.com/${user.login}`,
-          
-        }}
-      />
-       </div>
+        <Footer
+          socialLinks={{
+            instagram: `https://www.instagram.com/${user.login}`,
+            facebook: `https://www.facebook.com/${user.login}`,
+            twitter: `https://twitter.com/${user.login}`,
+            youtube: `https://www.youtube.com/${user.login}`,
+          }}
+        />
+      </div>
 
-      
       <div className="edit-button-container">
         <button onClick={handleEditClick} className="edit-icon-button">
           {isEditing ? <img src={Check} alt="check" size={24} /> : <img src={Edit} alt="edit" size={24} />}
