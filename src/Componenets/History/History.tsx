@@ -4,7 +4,7 @@ import "./History.css";
 type HistoryProps = {
   isEditing: boolean;
   history: string;
-  onHistoryChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void; // Alteração para textarea
+  onHistoryChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 const History: React.FC<HistoryProps> = ({ isEditing, history, onHistoryChange }) => {
