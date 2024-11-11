@@ -1,18 +1,18 @@
-import { Link,useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import "./Header.css";
-import { MdExitToApp } from 'react-icons/md';
 import { auth, githubProvider } from "../../firebase-config";
 import { signInWithPopup } from 'firebase/auth';
 import VectorIcon from "../../Assets/solar_login-2-broken.svg"
 
 interface HeaderProps {
     isProfileEdit?: boolean; 
+    userAvatar?: string; 
   }
   
-  const Header = ({ isProfileEdit }: HeaderProps) => {
+  const Header = ({ isProfileEdit, userAvatar }: HeaderProps) => {
     const navigate = useNavigate();
   
-    // Função de Logout
+
     const handleLogout = () => {
      
       console.log('Logout');
@@ -29,22 +29,36 @@ interface HeaderProps {
       } catch (error) {
         console.error("Error during GitHub login:", error);
       }
+
+    };
+    const scrollToSection = (sectionId: string) => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
     };
   return (
     <header className="header">
     <nav>
       <ul>
-        <li><Link to="/">Início</Link></li>
-        <li><Link to="/minha-historia">Minha História</Link></li>
-        <li><Link to="/experiencias">Experiências</Link></li>
-        <li><Link to="/contato">Contato</Link></li>
+        <li><button onClick={() => scrollToSection('Header')}>Início</button></li>
+        <li><button onClick={() => scrollToSection('History')}>Minha História</button></li>
+          <li><button onClick={() => scrollToSection('Experiences')}>Experiências</button></li>
+          <li><button onClick={() => scrollToSection('Footer')}>Contato</button></li>
       </ul>
     </nav>
   
     {isProfileEdit ? (
-      <button onClick={handleLogout} className="logout">
-        <MdExitToApp /> Sair
-      </button>
+       <button onClick={handleLogout} className="logout">
+       {userAvatar && (
+         <img
+           src={userAvatar} 
+           alt="User Avatar"
+           className="avatar-logout"
+         />
+       )}
+       Sair
+     </button>
     ) : (
       <button onClick={handleGitHubLogin} className="login">
         <img src={VectorIcon} alt="Vector Icon" className="vector-icon" /> Entrar

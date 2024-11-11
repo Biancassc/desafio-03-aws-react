@@ -34,7 +34,7 @@ const Profile = () => {
   return (
     <div>
       <Header isProfileEdit={false} />
-      <div className="profile-container">
+      <div className="profile-container" id="Header">
   {user ? (
     <div className="profile-content">
       <div className="left-info"> 
@@ -87,7 +87,7 @@ const Profile = () => {
 </div>
 
 
-      <div className="experiences-and-history">
+      <div className="experiences-and-history"id='History'>
         <History
           isEditing={false}
           history={history}
@@ -100,13 +100,16 @@ const Profile = () => {
               <p className="Noting">Não há nada por aqui!</p>
             </div>
           ) : (
+            <div id="Experiences">
             <Experiences experiences={experiences} />
+            </div>
           )}
         </div>
         <Email isEditing={false} email={email} />
       </div>
-
+      <div id="footer">
       <Footer />
+      </div>
     </div>
   );
 };

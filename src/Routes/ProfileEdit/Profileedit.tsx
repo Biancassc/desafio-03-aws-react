@@ -62,8 +62,8 @@ const ProfileEdit = () => {
 
   return (
     <div>
-      <Header isProfileEdit={true} />
-      <div className="edit-profile-container">
+      <Header isProfileEdit={true} userAvatar={user.avatar_url}  />
+      <div id="Header" className="edit-profile-container">
         <div className="edit-profile-left-info">
           <div className="edit-profile-photo">
             <img
@@ -111,27 +111,34 @@ const ProfileEdit = () => {
           </div>
         </div>
       </div>
-      <div className="edit-profile-below-info">
+      <div className="edit-profile-below-info" id='History'>
         <History
           isEditing={isEditing}
           history={history}
           onHistoryChange={handleHistoryChange}
+         
         />
+        <div id="Experiences">
         <Experiences
           isEditing={isEditing}
           experiences={experiences}
           onAddExperience={handleAddExperience}
           onDeleteExperience={handleDeleteExperience}
+         
         />
+        </div>
       </div>
-      <Footer
+      <div id="footer">
+      <Footer 
         socialLinks={{
           instagram: `https://www.instagram.com/${user.login}`,
           facebook: `https://www.facebook.com/${user.login}`,
           twitter: `https://twitter.com/${user.login}`,
           youtube: `https://www.youtube.com/${user.login}`,
+          
         }}
       />
+       </div>
 
       
       <div className="edit-button-container">
