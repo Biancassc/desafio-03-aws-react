@@ -5,6 +5,7 @@ import { auth, githubProvider } from "../../firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./Search.css";
+import ArrowRight from "../../Assets/arrow-right (1).svg"
 
 type SearchProps = {
   loadUser: (userName: string) => Promise<void>;
@@ -74,7 +75,7 @@ const Search = ({ loadUser }: SearchProps) => {
         onClick={() => loadUser(userName)}
         className="search-box-button"
       >
-        <FaArrowRight />
+        <img src={ArrowRight} alt="Arrow" />
       </button>
     </div>
   
