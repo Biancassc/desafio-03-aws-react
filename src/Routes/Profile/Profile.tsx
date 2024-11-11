@@ -11,7 +11,7 @@ import "./Profile.css";
 const Profile = () => {
   const location = useLocation();
   const user: UserProps = location.state;
-  const [userName] = useState("Fulano");
+  const [userName] = useState(localStorage.getItem("UserName"));
   const [history, setHistory] = useState("Não há nenhuma história para contar");
   const [experiences, setExperiences] = useState<any[]>([]);
   const [email, setEmail] = useState<string>(localStorage.getItem("userEmail") || "");
