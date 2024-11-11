@@ -50,6 +50,7 @@ interface HeaderProps {
   
     {isProfileEdit ? (
        <button onClick={handleLogout} className="logout">
+         Sair
        {userAvatar && (
          <img
            src={userAvatar} 
@@ -57,7 +58,7 @@ interface HeaderProps {
            className="avatar-logout"
          />
        )}
-       Sair
+      
      </button>
     ) : (
       <button onClick={handleGitHubLogin} className="login">
