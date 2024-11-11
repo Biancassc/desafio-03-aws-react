@@ -1,11 +1,10 @@
-import { FaGithub } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa";
 import { useState, KeyboardEvent, useEffect } from "react";
 import { auth, githubProvider } from "../../firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./Search.css";
 import ArrowRight from "../../Assets/arrow-right (1).svg"
+import GitHugLogo from "../../Assets/mingcute_github-fill.svg"
 
 type SearchProps = {
   loadUser: (userName: string) => Promise<void>;
@@ -14,6 +13,8 @@ type SearchProps = {
 const Search = ({ loadUser }: SearchProps) => {
   const [userName, setUserName] = useState("");
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [suggestions, setSuggestions] = useState<string[]>([]); 
+  const [showDropdown, setShowDropdown] = useState(false); 
   const navigate = useNavigate();
   
   const [userData, setUserData] = useState<{
@@ -23,7 +24,41 @@ const Search = ({ loadUser }: SearchProps) => {
     bio: string | null;
     location: string;
   } | null>(null);
-  
+  const fetchUsersFromLocalStorage = () => {
+    const storedUsers = localStorage.getItem('users');
+    if (storedUsers) {
+      const users = JSON.parse(storedUsers); 
+      return users;
+    }
+    return [];
+  };
+
+  const filterUsers = (query: string) => {
+    const users = fetchUsersFromLocalStorage();
+    const filteredUsers = users.filter((user: { login: string }) =>
+      user.login.toLowerCase().includes(query.toLowerCase()) 
+    );
+    return filteredUsers.map((user: { login: string }) => user.login);
+  };
+
+ 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setUserName(query);
+    if (query) {
+      const filteredSuggestions = filterUsers(query);
+      setSuggestions(filteredSuggestions);
+      setShowDropdown(true); 
+    } else {
+      setSuggestions([]);
+      setShowDropdown(false); 
+    }
+  };
+  const handleSelectUser = (selectedUser: string) => {
+    setUserName(selectedUser);
+    loadUser(selectedUser);
+    setShowDropdown(false); 
+  };
 
   const handleGitHubLogin = async () => {
     try {
@@ -38,6 +73,9 @@ const Search = ({ loadUser }: SearchProps) => {
         bio: user.displayName || '',
         location: '',
       };
+   
+      
+      localStorage.setItem("users", JSON.stringify(users)); 
       
 
       setUserData(userInformation);
@@ -78,21 +116,33 @@ const Search = ({ loadUser }: SearchProps) => {
         <img src={ArrowRight} alt="Arrow" />
       </button>
     </div>
-  
-    <div>
-      <div></div>
+    {showDropdown && suggestions.length > 0 && (
+        <div className="dropdown">
+          {suggestions.map((suggestion, index) => (
+            <div
+              key={index}
+              className="dropdown-item"
+              onClick={() => handleSelectUser(suggestion)}
+            >
+              {suggestion}
+            </div>
+          ))}
+        </div>
+      )}
+
+    <div className="dividerAll">
+      <div className="line"></div>
       <span className="divider">ou</span>
-      <div></div>
+      <div className="line"></div>
     </div>
   
     <div className="github-login">
-      <h4>Acesse sua conta com</h4>
-    </div>
-  
+    <h4>Acesse sua conta com</h4>
     <button className="button-github" onClick={handleGitHubLogin}>
-      <FaGithub /> GitHub
+      <img src={GitHugLogo} alt="github Logo " /> GitHub
     </button>
-  </div>
+  </div>  
+</div>  
   
   );
 };
