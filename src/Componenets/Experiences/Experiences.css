@@ -244,11 +244,11 @@
 .Noting{
   font-size: 40px;
   color: #D1D5DB;
-  height: 27px !important; 
-  display: flex;
+  height: 272px !important; 
+  
   justify-content: center; 
   text-align: center; 
-  margin-bottom: 64px !important;
+  margin-bottom: 200px !important;
   
 }
 .modal-overlay {
@@ -266,7 +266,7 @@
 
 .modal-content {
   background-color: #fff;
-  padding: 20px;
+  padding: 200px;
   padding-top: 800px;
   border-radius: 8px;
   width: 80%;
