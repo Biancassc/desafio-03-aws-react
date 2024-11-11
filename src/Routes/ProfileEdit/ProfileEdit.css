@@ -122,3 +122,12 @@
   color: white;
   font-size: 30px;
 }
+
+.edit-editable-name {
+  font-size: 64px;
+  color: #09bc8a;
+  border: none;
+  background: transparent;
+  font-weight: bolder;
+  outline: none;
+}
