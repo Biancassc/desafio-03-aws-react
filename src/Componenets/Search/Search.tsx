@@ -6,7 +6,6 @@ import "./Search.css";
 import ArrowRight from "../../Assets/arrow-right (1).svg";
 import GitHubLogo from "../../Assets/mingcute_github-fill.svg";
 import AlertIcon from "../../Assets/Vector (5).svg";
-import axios from "axios";
 
 type SearchProps = {
   loadUser: (userName: string) => Promise<boolean>; 
@@ -22,6 +21,7 @@ const Search = ({ loadUser }: SearchProps) => {
     email: string | null;
     bio: string | null;
     location: string;
+    name:string;
   } | null>(null);
 
   const navigate = useNavigate();
@@ -37,11 +37,8 @@ const Search = ({ loadUser }: SearchProps) => {
         email: user.email || '',
         bio: user.displayName || '',
         location: '',
+        name: user.displayName || '',
       };
-      
-      const response = await axios.get(`https://api.github.com/users/${userInformation.login}`);
-      const userGitHubData = response.data;
-      userInformation.location = userGitHubData.location || 'Localização não disponível';
 
       setUserData(userInformation);
       setUserLoggedIn(true);
@@ -73,6 +70,7 @@ const Search = ({ loadUser }: SearchProps) => {
   useEffect(() => {
     if (userLoggedIn && userData) {
       navigate("/profileedit", { state: userData });
+      // console.log(userData);
     }
   }, [navigate, userLoggedIn, userData]);
 
