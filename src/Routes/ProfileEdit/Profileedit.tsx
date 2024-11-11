@@ -1,36 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { MdLocationPin } from "react-icons/md";
+
+import { MdLocationPin, MdEdit, MdCheck } from "react-icons/md";
 import { UserProps } from "../../Types/users";
 import Footer from "../../Componenets/Footer/Footer";
 import Header from "../../Componenets/Header/Header";
 import History from "../../Componenets/History/History";
 import Experiences from "../../Componenets/Experiences/Experiences";
-import { MdEdit, MdCheck } from "react-icons/md";
-import { useLocation, useNavigate } from "react-router-dom";
 import Email from "../../Componenets/Email/Email";
+import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import "./ProfileEdit.css";
+import Edit from "../../Assets/edit-icon.svg";
+import Check from "../../Assets/Vector (6).svg";
 
 const ProfileEdit = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const user = location.state as UserProps | null;
 
-  const isLoggedIn = !!localStorage.getItem("authToken");
   const [isEditing, setIsEditing] = useState(false);
-  const [userName, setUserName] = useState(user?.login || "Fulano"); 
-  const [history, setHistory] = useState<string>(localStorage.getItem("history") || "");
-  const [email, setEmail] = useState<string>(localStorage.getItem("userEmail") || "");
+  const [userName, setUserName] = useState(user?.login || "");
+  const [history, setHistory] = useState(localStorage.getItem("history") || "");
+  const [email, setEmail] = useState(localStorage.getItem("userEmail") || "");
 
   const [experiences, setExperiences] = useState<any[]>(() => {
     const savedExperiences = localStorage.getItem(`experiences-${user?.login}`);
     return savedExperiences ? JSON.parse(savedExperiences) : [];
-  });
-
-  const [socialLinks, setSocialLinks] = useState({
-    instagram: user ? `https://www.instagram.com/${user.login}` : '',
-    facebook: user ? `https://www.facebook.com/${user.login}` : '',
-    twitter: user ? `https://twitter.com/${user.login}` : '',
-    youtube: user ? `https://www.youtube.com/${user.login}` : '',
   });
 
   useEffect(() => {
@@ -38,13 +31,6 @@ const ProfileEdit = () => {
       localStorage.setItem(`experiences-${user.login}`, JSON.stringify(experiences));
     }
   }, [experiences, user]);
-
-  const handleSocialLinkEdit = (social: string, newLink: string) => {
-    setSocialLinks(prevLinks => ({
-      ...prevLinks,
-      [social]: newLink
-    }));
-  };
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
@@ -56,19 +42,9 @@ const ProfileEdit = () => {
   };
 
   const handleAddExperience = (experience: any) => {
-    if (user) {
-      const updatedExperiences = [...experiences, experience];
-      localStorage.setItem(`experiences-${user.login}`, JSON.stringify(updatedExperiences));
-      onAddExperience(experience);
-    }
-    setIsModalOpen(false);
-    setNewExperience({
-      title: "",
-      period: "",
-      skills: [],
-      description: "",
-      repoLink: "",
-    });
+    const updatedExperiences = [...experiences, experience];
+    setExperiences(updatedExperiences);
+    localStorage.setItem(`experiences-${user?.login}`, JSON.stringify(updatedExperiences));
   };
 
   const handleDeleteExperience = (index: number) => {
@@ -87,90 +63,84 @@ const ProfileEdit = () => {
   return (
     <div>
       <Header isProfileEdit={true} />
-      <div className="profile-container">
-        <div className="profile-content">
-          <div className="profile-header">
-            <div className="profile-photo">
-              <img
-                src={user.avatar_url}
-                alt="foto de perfil"
-                className="profile-avatar"
-              />
-            </div>
-
-            <div className="user-info">
+      <div className="edit-profile-container">
+        <div className="edit-profile-left-info">
+          <div className="edit-profile-photo">
+            <img
+              src={user.avatar_url}
+              alt="foto de perfil"
+              className="edit-profile-avatar"
+            />
+          </div>
+          <div className="edit-profile-user-info">
             <h2>
-               
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={userName}
-                    onChange={handleUserNameChange}
-                    className="editable-name"
-                  />
-                ) : (
-                  userName
-                )}
-              </h2>
-
-              {user.location && (
-                <p>
-                  <MdLocationPin />
-                  <span>{user.location}</span>
-                </p>
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={userName}
+                  onChange={handleUserNameChange}
+                  className="edit-editable-name"
+                />
+              ) : (
+                userName
               )}
-              <h3>{user.email}</h3>
-            </div>
-            <h1 className="greeting">Hello, I'm </h1>
+            </h2>
+            {user.location && (
+              <p>
+                <MdLocationPin />
+                <span>{user.location}</span>
+              </p>
+            )}
+            <h3>{user.email}</h3>
           </div>
-          <div className="edit-button-container">
-            <button onClick={handleEditClick} className="edit-button">
-              {isEditing ? <MdCheck size={24} /> : <MdEdit size={24} />}
-            </button>
-          </div>
+        </div>
 
-          <div className="social-links">
-            <a
-              href={`https://github.com/${user.login}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button>GitHub</button>
+        <div className="edit-profile-right-info">
+          <h1 className="edit-greeting">Hello, I'm  </h1>
+          <h2 className="username">{user.name || user.login}</h2>
+          <div className="edit-profile-bio">
+            <span>{user.bio}</span>
+          </div>
+          <div className="edit-social-links">
+            <a href={`https://github.com/${user.login}`} target="_blank" rel="noopener noreferrer">
+              <button className="edit-github-button">GitHub</button>
             </a>
-            <a
-              href={`https://www.linkedin.com/in/${user.login}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button>LinkedIn</button>
+            <a href={user.blog} target="_blank" rel="noopener noreferrer">
+              <button className="edit-linkedin-button">LinkedIn</button>
             </a>
-            <History
-              isEditing={isEditing}
-              history={history}
-              onHistoryChange={handleHistoryChange}
-            />
-            <Experiences
-              isEditing={isEditing}
-              experiences={experiences}
-              onAddExperience={handleAddExperience}
-              onDeleteExperience={handleDeleteExperience}
-            />
-            <Email
-              isEditing={isEditing}
-              email={email}
-              onEmailChange={setEmail}
-            />
           </div>
         </div>
       </div>
+      <div className="edit-profile-below-info">
+        <History
+          isEditing={isEditing}
+          history={history}
+          onHistoryChange={handleHistoryChange}
+        />
+        <Experiences
+          isEditing={isEditing}
+          experiences={experiences}
+          onAddExperience={handleAddExperience}
+          onDeleteExperience={handleDeleteExperience}
+        />
+      </div>
       <Footer
-        socialLinks={socialLinks}
-        isEditing={isEditing}
-        onSocialLinkEdit={handleSocialLinkEdit}
+        socialLinks={{
+          instagram: `https://www.instagram.com/${user.login}`,
+          facebook: `https://www.facebook.com/${user.login}`,
+          twitter: `https://twitter.com/${user.login}`,
+          youtube: `https://www.youtube.com/${user.login}`,
+        }}
       />
+
+      
+      <div className="edit-button-container">
+        <button onClick={handleEditClick} className="edit-icon-button">
+          {isEditing ? <img src={Check} alt="check" size={24} /> : <img src={Edit} alt="edit" size={24} />}
+        </button>
+      </div>
     </div>
   );
 };
 
 export default ProfileEdit;
-
