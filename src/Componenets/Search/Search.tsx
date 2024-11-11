@@ -4,6 +4,7 @@ import { useState, KeyboardEvent, useEffect } from "react";
 import { auth, githubProvider } from "../../firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import "./Search.css";
 
 type SearchProps = {
   loadUser: (userName: string) => Promise<void>;
@@ -58,35 +59,40 @@ const Search = ({ loadUser }: SearchProps) => {
   }, [navigate, userLoggedIn, userData]);
 
   return (
-    <div>
-      <h1>Digite o nome do usuário que deseja buscar</h1>
-      <div>
-        <input
-          className="search-box"
-          type="text"
-          placeholder="Digite o nome do usuário"
-          onChange={(e) => setUserName(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <button
-          onClick={() => loadUser(userName)}
-          className="search-box-button"
-        >
-          <FaArrowRight />
-        </button>
-      </div>
-      <div>
-        <div></div>
-        <span className="divider">ou</span>
-        <div></div>
-      </div>
-      <div className="github-login">
-        <h4>Acesse sua conta com</h4>
-      </div>
-      <button className="button-github" onClick={handleGitHubLogin}>
-        <FaGithub /> GitHub
+    <div className="container">
+    <h1>Digite o nome do usuário que deseja buscar</h1>
+  
+    <div className="search-box-container">
+      <input
+        className="search-box"
+        type="text"
+        placeholder="Digite o nome do usuário"
+        onChange={(e) => setUserName(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+      <button
+        onClick={() => loadUser(userName)}
+        className="search-box-button"
+      >
+        <FaArrowRight />
       </button>
     </div>
+  
+    <div>
+      <div></div>
+      <span className="divider">ou</span>
+      <div></div>
+    </div>
+  
+    <div className="github-login">
+      <h4>Acesse sua conta com</h4>
+    </div>
+  
+    <button className="button-github" onClick={handleGitHubLogin}>
+      <FaGithub /> GitHub
+    </button>
+  </div>
+  
   );
 };
 
