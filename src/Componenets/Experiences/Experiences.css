@@ -159,22 +159,20 @@
 
 .modal {
   position: fixed;
-  top: 10%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;
+  width: 80%;
   max-width: 867px;
-  height: auto;
-  max-height: 70%;
+  height: 50%;
+  max-height: 80%;
   background-color: #fff;
-  padding: 30px;
   border-radius: 26px;
   z-index: 1000;
   overflow-y: auto;
+  margin-top: 150px;
+ 
 }
-
-
-
 
 .modal-content {
   display: flex;
@@ -187,7 +185,7 @@
   font-size: 32px;
   font-weight: bold;
   color: #172A3A;
-  margin-bottom: 64px;
+  margin-top: -240px;
   text-align: left;
 
 }
@@ -246,4 +244,30 @@
 .Noting{
   font-size: 40px;
   color: #D1D5DB;
+}
+.modal-overlay {
+  position: fixed; 
+  top: 10;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(2, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; 
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  padding-top: 800px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  z-index: 10000;
 }

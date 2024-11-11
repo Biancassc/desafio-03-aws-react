@@ -125,7 +125,7 @@ const Experiences: React.FC<ExperiencesProps> = ({
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
-            <h3>Criação de Card</h3>
+            <h3>Edição de Card</h3>
             <input
               type="text"
               value={newExperience.title}
