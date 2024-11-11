@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { MdLocationPin } from "react-icons/md";
 
@@ -37,22 +37,16 @@ const ProfileEdit = () => {
     facebook: `https://www.facebook.com/${user?.login}`,
     twitter: `https://twitter.com/${user?.login}`,
     youtube: `https://www.youtube.com/${user?.login}`,
+    github: `https://github.com/${user?.login}`,
+    linkedin: `https://www.linkedin.com/in/${user?.login}`,
   });
 
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem(`experiences-${user.login}`, JSON.stringify(experiences));
-    }
-  }, [experiences, user]);
-
-  useEffect(() => {
-    if (fullName) {
-      localStorage.setItem(`fullName-${user?.login}`, fullName);
-    }
-  }, [fullName, user]);
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [currentSocial, setCurrentSocial] = useState<string>(''); 
+  const [newLink, setNewLink] = useState<string>(''); 
 
   const handleEditClick = () => {
-    setIsEditing(!isEditing);
+    setIsEditing(!isEditing); 
   };
 
   const handleHistoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,8 +77,33 @@ const ProfileEdit = () => {
   const handleSocialLinkEdit = (social: string, newLink: string) => {
     setSocialLinks(prevState => ({
       ...prevState,
-      [social]: newLink,
+      [social]: newLink, 
     }));
+  };
+
+  const handleSocialEditClick = (social: string) => {
+    setCurrentSocial(social); 
+    setNewLink(socialLinks[social] || ''); 
+    setIsModalOpen(true); 
+  };
+
+  const handleModalSave = () => {
+    if (newLink !== '') {  
+      handleSocialLinkEdit(currentSocial, newLink);
+    }
+    setIsModalOpen(false); 
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false); 
+    setCurrentSocial(''); 
+    setNewLink(''); 
+  };
+
+  const handleSocialLinkClick = (social: string) => {
+    if (!isEditing) {  
+      window.open(socialLinks[social], "_blank");
+    }
   };
 
   if (!user) {
@@ -128,8 +147,32 @@ const ProfileEdit = () => {
           <div className="edit-profile-bio">
             <span>{user.bio}</span>
           </div>
+
+          <div className="edit-social-links">
+            <button 
+              className="edit-github-button" 
+              onClick={() => {
+                if (isEditing) {
+                  handleSocialEditClick('github');
+                } else {
+                  handleSocialLinkClick('github');
+                }
+              }}> GitHub </button>
+            <button 
+              className="edit-linkedin-button" 
+              onClick={() => {
+                if (isEditing) {
+                  handleSocialEditClick('linkedin');
+                } else {
+                  handleSocialLinkClick('linkedin');
+                }
+              }}>
+              LinkedIn
+            </button>
+          </div>
         </div>
       </div>
+
       <div className="edit-profile-below-info" id="History">
         <History
           isEditing={isEditing}
@@ -145,7 +188,9 @@ const ProfileEdit = () => {
           />
         </div>
       </div>
+
       <Email isEditing={isEditing} email={email} onEmailChange={handleEmailChange} />
+
       <div id="footer">
         <Footer
           socialLinks={socialLinks}
@@ -159,6 +204,25 @@ const ProfileEdit = () => {
           {isEditing ? <img src={Check} alt="check" size={24} /> : <img src={Edit} alt="edit" size={24} />}
         </button>
       </div>
+
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <div className="modal-content">
+              <h3>Adicionar Link</h3>
+              <input
+                type="text"
+                value={newLink}
+                onChange={(e) => setNewLink(e.target.value)} 
+              />
+              <div className="modal-buttons">
+                <button onClick={handleModalClose} className="Cancel">Cancelar</button>
+                <button onClick={handleModalSave} className="Save">Salvar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
