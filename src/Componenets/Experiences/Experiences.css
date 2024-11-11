@@ -205,7 +205,7 @@
 
 
 .modal-content textarea {
-  height: 281px;  
+  height: 271px;  
 }
 
 
@@ -244,6 +244,12 @@
 .Noting{
   font-size: 40px;
   color: #D1D5DB;
+  height: 27px !important; 
+  display: flex;
+  justify-content: center; 
+  text-align: center; 
+  margin-bottom: 64px !important;
+  
 }
 .modal-overlay {
   position: fixed; 
