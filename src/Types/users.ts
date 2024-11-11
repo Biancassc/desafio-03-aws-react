@@ -4,4 +4,5 @@ export type UserProps = {
     location:string;
     bio:string;
      email:string;
+    name:string;
 };
