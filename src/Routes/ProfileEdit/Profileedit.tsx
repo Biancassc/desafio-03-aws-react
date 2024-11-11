@@ -8,27 +8,23 @@ import Experiences from "../../Componenets/Experiences/Experiences";
 import { MdEdit, MdCheck } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
 import Email from "../../Componenets/Email/Email";
-import "./ProfileEdit.css"
+import "./ProfileEdit.css";
 
 const ProfileEdit = () => {
   const location = useLocation();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const user = location.state as UserProps | null;
 
   const isLoggedIn = !!localStorage.getItem("authToken");
   const [isEditing, setIsEditing] = useState(false);
-  const [history, setHistory] = useState<string>(
-    localStorage.getItem("history") || ""
-  );
-  const [email, setEmail] = useState<string>(
-    localStorage.getItem("userEmail") || ""
-  );
+  const [userName, setUserName] = useState(user?.login || "Fulano"); 
+  const [history, setHistory] = useState<string>(localStorage.getItem("history") || "");
+  const [email, setEmail] = useState<string>(localStorage.getItem("userEmail") || "");
 
   const [experiences, setExperiences] = useState<any[]>(() => {
     const savedExperiences = localStorage.getItem(`experiences-${user?.login}`);
     return savedExperiences ? JSON.parse(savedExperiences) : [];
   });
-
 
   const [socialLinks, setSocialLinks] = useState({
     instagram: user ? `https://www.instagram.com/${user.login}` : '',
@@ -46,7 +42,7 @@ const ProfileEdit = () => {
   const handleSocialLinkEdit = (social: string, newLink: string) => {
     setSocialLinks(prevLinks => ({
       ...prevLinks,
-      [social]: newLink 
+      [social]: newLink
     }));
   };
 
@@ -74,9 +70,14 @@ const ProfileEdit = () => {
       repoLink: "",
     });
   };
+
   const handleDeleteExperience = (index: number) => {
     const updatedExperiences = experiences.filter((_, i) => i !== index);
     setExperiences(updatedExperiences);
+  };
+
+  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(e.target.value);
   };
 
   if (!user) {
@@ -98,7 +99,20 @@ const ProfileEdit = () => {
             </div>
 
             <div className="user-info">
-              <h2>{user.login}</h2>
+            <h2>
+               
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={userName}
+                    onChange={handleUserNameChange}
+                    className="editable-name"
+                  />
+                ) : (
+                  userName
+                )}
+              </h2>
+
               {user.location && (
                 <p>
                   <MdLocationPin />
@@ -119,13 +133,15 @@ const ProfileEdit = () => {
             <a
               href={`https://github.com/${user.login}`}
               target="_blank"
-              rel="noopener noreferrer" >
+              rel="noopener noreferrer"
+            >
               <button>GitHub</button>
             </a>
             <a
               href={`https://www.linkedin.com/in/${user.login}`}
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               <button>LinkedIn</button>
             </a>
             <History
@@ -139,18 +155,19 @@ const ProfileEdit = () => {
               onAddExperience={handleAddExperience}
               onDeleteExperience={handleDeleteExperience}
             />
-             <Email
-            isEditing={isEditing}
-            email={email}
-            onEmailChange={setEmail} 
-          />
+            <Email
+              isEditing={isEditing}
+              email={email}
+              onEmailChange={setEmail}
+            />
           </div>
         </div>
       </div>
-      <Footer 
+      <Footer
         socialLinks={socialLinks}
         isEditing={isEditing}
-        onSocialLinkEdit={handleSocialLinkEdit}/>
+        onSocialLinkEdit={handleSocialLinkEdit}
+      />
     </div>
   );
 };
