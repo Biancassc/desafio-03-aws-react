@@ -1,0 +1,131 @@
+.Noting {
+    font-size: 40px;
+    color: #D1D5DB;
+    text-align: center; 
+    padding-top: 50px;
+    background-color:#004346;
+    height: 272px;
+    margin-bottom: 300px;
+  }
+  .Noting h1{
+    font-size: 64px;
+    color: #FFFFFF;
+  }
+  
+
+.profile-container {
+  margin-top: 128px;
+  height: calc(100vh - 70px); 
+  background-color: #FFFFFF; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.profile-content {
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-start; 
+  width: 100%;
+  max-width: 1200px;
+}
+
+
+.left-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 64px;
+  margin-right:420px ;
+  text-align: left;
+}
+
+
+.profile-photo {
+  width: 256px;
+  height: 256px;
+  border-radius: 50%;
+  box-shadow: 5px 4px 4px #172a3a; 
+  overflow: hidden;
+  margin-bottom: 16px;
+  margin-top: 128px;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.user-info h2{
+  font-size: 40px !important;
+  color:#18191F,
+}
+.user-info p,
+.user-info h3 {
+  font-size: 25px;
+  color: #18191F;
+  margin-bottom: 8px;
+  font-weight:600px;
+}
+
+
+.right-info {
+  margin-top: 128px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+
+.greeting {
+  font-size: 64px; 
+  color: #172a3a;
+  margin-bottom: 32px;
+}
+.username {
+  color: #09bc8a; 
+}
+
+.bio {
+  font-size: 25px;
+  color: #18191F;
+  margin-bottom: 20px;
+}
+
+.social-links {
+  display: flex;
+  gap: 28px;
+  margin-top: 20px;
+  
+}
+
+.social-links button {
+  font-size: 32px; 
+  background-color: #172a3a;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  box-shadow: 6px 8px 0px #09bc8a;
+  border-radius: 16px;
+  font-weight: bolder;
+  
+  
+}
+
+.linkedin-button {
+  width: 278px; 
+  height:69px; 
+}
+.github-button{
+  width:194px;
+  height: 63px;
+}
+.social-links button:active {
+  background-color: #2e5b65;
+}
+
