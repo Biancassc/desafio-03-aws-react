@@ -58,11 +58,11 @@ const Profile = () => {
 
       <div className="right-info">
   <h1 className="greeting">
-    Hello, I'm <span className="username">{userName}</span>
+     Hello, <br></br>  I'm <span className="username">{user.name || user.login}</span>
   </h1>
-        <div className="bio">
-          <span>{user.bio}</span>
-        </div>
+  <div className="bio">
+  <span>{user.bio || "Sem bio disponível"}</span>
+</div>
         <div className="social-links">
           <a
             href={`https://github.com/${user.login}`}
@@ -112,4 +112,5 @@ const Profile = () => {
 };
 
 export default Profile;
+
 
