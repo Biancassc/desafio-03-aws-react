@@ -18,6 +18,7 @@ type ExperiencesProps = {
   onAddExperience: (experience: Experience) => void;
   onDeleteExperience: (index: number) => void;
   onEditExperience: (index: number, updatedExperience: Experience) => void;
+  
 };
 
 const Experiences: React.FC<ExperiencesProps> = ({
@@ -49,7 +50,12 @@ const Experiences: React.FC<ExperiencesProps> = ({
   };
 
   const handleAddExperience = () => {
-    onAddExperience(newExperience);
+    const userKey = "fulano"; 
+    if (userKey) {
+      const updatedExperiences = [...experiences, newExperience];
+      localStorage.setItem(`experiences-${userKey}`, JSON.stringify(updatedExperiences));
+      onAddExperience(newExperience);
+    }
     setIsModalOpen(false);
     setNewExperience({
       title: "",
@@ -151,7 +157,8 @@ const Experiences: React.FC<ExperiencesProps> = ({
             />
             <div className="modal-actions">
               <button onClick={() => setIsModalOpen(false)}>Cancelar</button>
-              <button className="save"
+              <button
+                className="save"
                 onClick={handleAddExperience}
                 disabled={
                   !newExperience.title ||
@@ -171,3 +178,4 @@ const Experiences: React.FC<ExperiencesProps> = ({
 };
 
 export default Experiences;
+

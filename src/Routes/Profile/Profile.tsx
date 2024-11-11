@@ -5,7 +5,7 @@ import Footer from "../../Componenets/Footer/Footer";
 import Header from "../../Componenets/Header/Header";
 import History from "../../Componenets/History/History";
 import Experiences from "../../Componenets/Experiences/Experiences";
-import Email from "../../Componenets/Email/email";
+import Email from "../../Componenets/Email/Email";
 import "./Profile.css";
 
 const Profile = () => {
@@ -14,16 +14,16 @@ const Profile = () => {
   const [userName] = useState("Fulano");
   const [history, setHistory] = useState("Não há nenhuma história para contar");
   const [experiences, setExperiences] = useState<any[]>([]);
-  const [email, setEmail] = useState<string>(
-    localStorage.getItem("userEmail") || ""
-  );
+  const [email, setEmail] = useState<string>(localStorage.getItem("userEmail") || "");
 
   useEffect(() => {
-    const storedExperiences = localStorage.getItem("experiences");
-    if (storedExperiences) {
-      setExperiences(JSON.parse(storedExperiences));
+    if (user) {
+      const savedExperiences = localStorage.getItem(`experiences-${user.login}`);
+      if (savedExperiences) {
+        setExperiences(JSON.parse(savedExperiences));
+      }
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (experiences.length > 0) {
@@ -51,7 +51,6 @@ const Profile = () => {
                 <h2>{user.login}</h2>
                 {user.location && (
                   <p>
-                    
                     <span>{user.location}</span>
                   </p>
                 )}
@@ -84,9 +83,11 @@ const Profile = () => {
                 onHistoryChange={(e) => setHistory(e.target.value)}
               />
               <div className="experiences-section">
-                <h3>Experiências</h3>
                 {experiences.length === 0 ? (
-                  <p>Não há nada por aqui!</p>
+                  <div className="Noting">
+                    <h1>Experiências</h1>
+                  <p className="Noting">Não há nada por aqui!</p>
+                  </div>
                 ) : (
                   <Experiences experiences={experiences} />
                 )}
@@ -102,4 +103,6 @@ const Profile = () => {
     </div>
   );
 };
+
 export default Profile;
+

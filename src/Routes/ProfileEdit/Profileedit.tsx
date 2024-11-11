@@ -6,14 +6,16 @@ import Header from "../../Componenets/Header/Header";
 import History from "../../Componenets/History/History";
 import Experiences from "../../Componenets/Experiences/Experiences";
 import { MdEdit, MdCheck } from "react-icons/md";
-import { useLocation } from "react-router-dom";
-import Email from "../../Componenets/Email/email";
+import { useLocation, useNavigate } from "react-router-dom";
+import Email from "../../Componenets/Email/Email";
 import "./ProfileEdit.css"
 
 const ProfileEdit = () => {
   const location = useLocation();
+  const navigate = useNavigate(); 
   const user = location.state as UserProps | null;
 
+  const isLoggedIn = !!localStorage.getItem("authToken");
   const [isEditing, setIsEditing] = useState(false);
   const [history, setHistory] = useState<string>(
     localStorage.getItem("history") || ""
@@ -23,7 +25,7 @@ const ProfileEdit = () => {
   );
 
   const [experiences, setExperiences] = useState<any[]>(() => {
-    const savedExperiences = localStorage.getItem("experiences");
+    const savedExperiences = localStorage.getItem(`experiences-${user?.login}`);
     return savedExperiences ? JSON.parse(savedExperiences) : [];
   });
 
@@ -36,8 +38,10 @@ const ProfileEdit = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem("experiences", JSON.stringify(experiences));
-  }, [experiences]);
+    if (user) {
+      localStorage.setItem(`experiences-${user.login}`, JSON.stringify(experiences));
+    }
+  }, [experiences, user]);
 
   const handleSocialLinkEdit = (social: string, newLink: string) => {
     setSocialLinks(prevLinks => ({
@@ -56,12 +60,20 @@ const ProfileEdit = () => {
   };
 
   const handleAddExperience = (experience: any) => {
-    setExperiences((prevExperiences) => {
-      const updatedExperiences = [...prevExperiences, experience];
-      return updatedExperiences;
+    if (user) {
+      const updatedExperiences = [...experiences, experience];
+      localStorage.setItem(`experiences-${user.login}`, JSON.stringify(updatedExperiences));
+      onAddExperience(experience);
+    }
+    setIsModalOpen(false);
+    setNewExperience({
+      title: "",
+      period: "",
+      skills: [],
+      description: "",
+      repoLink: "",
     });
   };
-
   const handleDeleteExperience = (index: number) => {
     const updatedExperiences = experiences.filter((_, i) => i !== index);
     setExperiences(updatedExperiences);
@@ -144,3 +156,4 @@ const ProfileEdit = () => {
 };
 
 export default ProfileEdit;
+
