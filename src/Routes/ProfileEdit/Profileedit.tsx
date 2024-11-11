@@ -29,10 +29,10 @@ const ProfileEdit = () => {
 
 
   const [socialLinks, setSocialLinks] = useState({
-    instagram: `https://www.instagram.com/${user?.login}`,
-    facebook: `https://www.facebook.com/${user?.login}`,
-    twitter: `https://twitter.com/${user?.login}`,
-    youtube: `https://www.youtube.com/${user?.login}`,
+    instagram: user ? `https://www.instagram.com/${user.login}` : '',
+    facebook: user ? `https://www.facebook.com/${user.login}` : '',
+    twitter: user ? `https://twitter.com/${user.login}` : '',
+    youtube: user ? `https://www.youtube.com/${user.login}` : '',
   });
 
   useEffect(() => {
