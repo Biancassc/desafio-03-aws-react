@@ -6,6 +6,7 @@ import "./Search.css";
 import ArrowRight from "../../Assets/arrow-right (1).svg";
 import GitHubLogo from "../../Assets/mingcute_github-fill.svg";
 import AlertIcon from "../../Assets/Vector (5).svg";
+import axios from "axios";
 
 type SearchProps = {
   loadUser: (userName: string) => Promise<boolean>; 
@@ -37,6 +38,10 @@ const Search = ({ loadUser }: SearchProps) => {
         bio: user.displayName || '',
         location: '',
       };
+      
+      const response = await axios.get(`https://api.github.com/users/${userInformation.login}`);
+      const userGitHubData = response.data;
+      userInformation.location = userGitHubData.location || 'Localização não disponível';
 
       setUserData(userInformation);
       setUserLoggedIn(true);
