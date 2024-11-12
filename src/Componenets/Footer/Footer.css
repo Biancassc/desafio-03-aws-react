@@ -1,10 +1,10 @@
 .footer {
     width: 1368px;
     height: 459px;
-    background-color: white; 
-    margin: 0 auto; 
-    flex-direction: column; 
-    border-radius: 8px; 
+    background-color: white;
+    margin: 0 auto;
+    flex-direction: column;
+    border-radius: 8px;
 }
 .social-icons {
     display: flex;
@@ -14,19 +14,19 @@
 }
 
 .social-icon-container {
-    position: relative; 
+    position: relative;
     display: inline-block;
 }
 
 .social-icon-container a {
     display: block;
-    width: 96px;  
+    width: 96px;
     height: 96px;
     text-align: center;
 }
 
 .social-icon-container img {
-    width: 96px; 
+    width: 96px;
     height: 96px;
     object-fit: contain;
     
@@ -35,12 +35,12 @@
 
 .edit-icon {
     position: absolute;
-    top: -5px;   
+    top: -5px;
     right: 0px;
     width: 24px !important;
     height: 24px !important;
     cursor: pointer;
-     background: none; 
+    background: none;
 }
 
 
@@ -51,16 +51,26 @@
     margin-bottom: 64px;
     font-weight: bold;
     word-wrap: break-word;
-   word-break: break-word;
-    margin-top: 128px;
-    margin-bottom: 64px;
+    word-break: break-word;
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; 
 }
 
 .modal {
-   margin-top: 100px;
+    margin-top: 50px;
     left: 0;
     width: 100%;
-    height: 100% !important;
+    height: auto;
+    max-height: 424px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,94 +80,83 @@
 
 .modal-content {
     background-color: #fff;
-    padding: 40px;
-    padding-top: 80px; 
     border-radius: 8px;
-    width: 80%; 
-    max-width: 867px; 
+    width: 60%;
+    max-width: 867px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: left;
-   
-    
+    height: 50%;
+    max-height: 424px;
+    margin-bottom: 500px;
 }
-
 
 .modal-content h3 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    color: #172a3a; 
+    font-size: 32px;
+    margin-bottom: 1px;
+    color: #172a3a;
 }
-
 
 .modal-content input {
     width: 100%;
     max-width: 739px;
-    height: 72px;
+    height: 0px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
-
 
 .modal-buttons {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 739px; 
+    max-width: 739px;
     gap: 24px;
 }
 
 .modal-buttons button {
-    flex: 1; 
+    flex: 1;
     height: 64px;
     color: white;
     cursor: pointer;
-    border-radius: 8px;
-    font-size: 32px;
-   
-}
-
-.modal-buttons button:nth-child(2) {
-    background-color: #172a3a; 
-    border: #172a3a;
-}
-
-.Cancel{
     border-radius: 6px;
-    color: #172a3a !important;
-    
-    
+    font-size: 16px;
 }
 
-.modal-buttons button:nth-child(2):hover {
-    background-color: #34373a;
+.Cancel {
+    color: #172a3a !important;
 }
+
+.Save {
+    background-color: #172a3a;
+    color: white !important;
+}
+
+
+
 .Copy-location {
     display: flex;
     justify-content: center;
-    gap: 84px; 
-    width: 100%; 
-margin-bottom: 85px;
-margin-top: 64px;
-font-weight:400;
+    gap: 84px;
+    width: 100%;
+    margin-bottom: 85px;
+    margin-top: 64px;
+    font-weight: 400;
 }
 
 .location, .copyright {
     font-size: 25px;
     display: flex;
-    align-items: center; 
+    align-items: center;
     gap: 10px;
     color: #172a3a;
     font-weight: 500;
-
 }
 
-
 .location img, .copyright img {
-    width: 20px; 
-    height: 20px; 
+    width: 20px;
+    height: 20px;
 }
