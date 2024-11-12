@@ -37,7 +37,6 @@ const Search = ({ loadUser }: SearchProps) => {
         email: user.email || '',
         bio: user.displayName || '',
         location: '',
-        name: user.displayName || '',
       };
 
       setUserData(userInformation);

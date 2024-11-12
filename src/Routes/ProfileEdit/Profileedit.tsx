@@ -62,7 +62,10 @@ const ProfileEdit = () => {
 
   const handleDeleteExperience = (index: number) => {
     const updatedExperiences = experiences.filter((_, i) => i !== index);
+    
     setExperiences(updatedExperiences);
+    
+    localStorage.setItem(`experiences-${user?.login}`, JSON.stringify(updatedExperiences));
   };
 
   const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
