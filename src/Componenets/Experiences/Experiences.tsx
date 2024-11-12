@@ -145,6 +145,7 @@ const Experiences: React.FC<ExperiencesProps> = ({
               placeholder="Habilidades (Separe-as por vírgulas)"
             />
             <textarea
+            className="description"
               value={newExperience.description}
               onChange={(e) => handleExperienceChange(e, "description")}
               placeholder="Descreve a sua experiência"
