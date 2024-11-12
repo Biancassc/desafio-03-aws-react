@@ -7,7 +7,7 @@ import BrazilIcon from "../../Assets/Vector (2).svg";
 import PencilIcon from "../../Assets/Group 13.svg";
 import "./Footer.css";
 
-const Footer = ({ socialLinks, isEditing, onSocialLinkEdit }: any) => {
+const Footer = ({ socialLinks={}, isEditing, onSocialLinkEdit }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentSocial, setCurrentSocial] = useState('');
   const [newLink, setNewLink] = useState('');
@@ -33,13 +33,14 @@ const Footer = ({ socialLinks, isEditing, onSocialLinkEdit }: any) => {
     <footer className="footer">
       <p className='happy-work'>Assim que possível, me envie um email para que possamos trabalhar felizes juntos!</p>
       <div className="social-icons">
-        {['instagram', 'facebook', 'twitter', 'youtube'].map((social) => (
+      {['instagram', 'facebook', 'twitter', 'youtube'].map((social) => (
           <div className="social-icon-container" key={social}>
             <a href={socialLinks[social] || '#'} target="_blank" rel="noopener noreferrer">
               <img 
                 src={social === 'instagram' ? InstagramIcon : 
                      social === 'facebook' ? FacebookIcon : 
                      social === 'twitter' ? TwitterIcon : 
+                
                      YouTubeIcon} 
                 alt={social} 
                 width="40" height="40" />
@@ -78,7 +79,7 @@ const Footer = ({ socialLinks, isEditing, onSocialLinkEdit }: any) => {
             />
             <div className="modal-buttons">
               <button onClick={handleModalClose} className='Cancel'>Cancelar</button>
-              <button onClick={handleModalSave}>Salvar</button>
+              <button onClick={handleModalSave} className='Save'>Salvar</button>
             </div>
           </div>
         </div>
@@ -88,4 +89,3 @@ const Footer = ({ socialLinks, isEditing, onSocialLinkEdit }: any) => {
 };
 
 export default Footer;
-
