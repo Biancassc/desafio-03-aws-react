@@ -1,0 +1,54 @@
+.email-section {
+    background-color: #172A3A;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 392px;
+    width: 100%;
+    text-align: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  
+  .email-text, .email-address {
+    color: white;
+    font-size: 64px;
+    margin: 0;
+    word-wrap: break-word;
+  }
+  
+  .email-input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 64px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    text-align: center;
+    margin-top: 64px;
+  }
+  
+  .email-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 64px;
+    text-align: center;
+  }
+  
+  .line {
+    height: 3px;
+    background-color: white;
+    margin-top: 29px;
+    width: 100%;
+    max-width: 839px;
+    margin: 0 auto; 
+    display: block;
+  }
+  
+  .email-address {
+    margin-top: 64px;
+    font-size: 64px;
+  }
+  

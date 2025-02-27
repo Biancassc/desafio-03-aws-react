@@ -1,0 +1,87 @@
+/* Header CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  background-color: #0b2239;
+  color: white;
+  padding: 20px 40px;
+  border-bottom-left-radius: 35.6px;
+  border-bottom-right-radius: 35.6px;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 100px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header nav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 64px;
+}
+
+header nav button {
+  font-size: 32px;
+  color: #FFFFFF;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button.login, button.logout {
+  font-size: 32px;
+  font-weight: bold;
+  border: none;
+  background-color: #0b2239;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button.login .vector-icon {
+  width: 32px;
+  height: 32px;
+}
+
+button.logout .vector-icon {
+  display: none;
+}
+
+button.logout .avatar-logout {
+  width: 77px;
+  height: 76px;
+  border-radius: 50%; 
+  object-fit: cover; 
+  margin-right: 12px; 
+}
+
+button:focus, button:active {
+  outline: none;
+  background-color: #1d2b47;
+}
+
+footer {
+  padding: 40px;
+  background-color: #0b2239;
+  color: white;
+  margin-top: 40px;
+}

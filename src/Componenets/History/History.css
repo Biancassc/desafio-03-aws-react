@@ -1,0 +1,61 @@
+
+.history-section {
+    width: calc(1240px - 128px); 
+    max-width: 1240px; 
+    height: auto; 
+    background-color: #508991;
+    border-radius: 20px;
+    padding: 64px; 
+    margin: 0 auto;
+    margin-bottom: 128px;
+    font-family: 'roboto';
+   
+  }
+  
+
+  .history-section h3 {
+    font-size: 64px; 
+    font-weight:700;
+    color: white;
+    margin-bottom: 65px; 
+    text-align: center;
+  }
+  
+ 
+  .history-section p {
+    font-size: 24px; 
+    color: #fff;
+    line-height: 1.6;
+    padding: 10px 64px; 
+    word-wrap: break-word;
+    white-space: pre-wrap; 
+  }
+  
+ 
+  .history-section textarea {
+    width: 100%;  
+    max-width: 100%; 
+    min-height: auto; 
+    padding: 10px 64px; 
+    font-size: 24px;
+    border: none;
+    border-radius: 10px; 
+    background-color: #508991;
+    color: #fff; 
+    box-sizing: border-box;
+    resize: vertical; 
+    word-wrap: break-word; 
+    white-space: pre-wrap; 
+    outline: none; 
+    height: 266px;
+  }
+  
+  .history-section textarea.empty {
+    background-color: #fff; 
+    color: #ccc; 
+  
+   
+  }
+  .history-section textarea::placeholder {
+    color: #ccc; /
+  }
